@@ -6,7 +6,7 @@ import paramiko
 import warnings
 import threading
 
-cmd = "https://iplogger.org/2VK6Q5" # Command here
+cmd = "" # Command here
 
 paramiko.util.log_to_file("/dev/null")
 warnings.filterwarnings(action="ignore", module=".*paramiko.*")
