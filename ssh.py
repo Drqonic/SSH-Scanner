@@ -14,8 +14,7 @@ warnings.filterwarnings(action="ignore", module=".*paramiko.*")
 if len(sys.argv) < 3:
 	print("Incorrect usage!")
 	print("If choice is butterfly don't include a range")
-	print("Usage: python {} [Threads] [Choice(A/B/C/Butterfly)] [Range]".format(sys.argv[0]))
-	sys.exit()
+	sys.exit("Usage: python {} [Threads] [Choice(A/B/C/Butterfly)] [Range]".format(sys.argv[0]))
 
 threads = int(sys.argv[1])
 choice = sys.argv[2].lower()
@@ -29,8 +28,7 @@ elif choice == "c":
 elif choice == "butterfly":
 	pass
 else:
-	print("This is not an option.")
-	sys.exit()
+	sys.exit("This is not an option.")
 
 found = []
 
