@@ -48,16 +48,12 @@ butterfly = [
 ]
 
 def gen():
-	return random.randint(0, 255)
+	return str(random.randint(0, 255))
 
 def butterflies():
 	r = random.choice(butterfly).split(".")
-	if len(r) == 1:
-		return "{}.{}.{}.{}".format(r[0], gen(), gen(), gen())
-	if len(r) == 2:
-		return "{}.{}.{}.{}".format(r[0], r[1], gen(), gen())
-	if len(r) == 3:
-		return "{}.{}.{}.{}".format(r[0], r[1], r[2], gen())
+	
+	return ".".join(abc for abc in r) + "." + ".".join(gen() for i in range(4-len(r)))
 
 def ipgen():
 	if choice == "a":
